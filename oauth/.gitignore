@@ -23,7 +23,6 @@ bin/
 *.ipr
 out/
 !**/src/main/**/out/
-!**/src/main/resources/application-secret.yml
 !**/src/test/**/out/
 
 ### NetBeans ###
