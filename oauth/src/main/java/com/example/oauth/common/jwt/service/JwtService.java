@@ -21,12 +21,12 @@ import java.util.Optional;
 public class JwtService {
     @Value("${jwt.key}")
     private String secretKey;
+    private String accessHeader = "Authorization";
+    private String refreshHeader = "Authorization-refresh";
+    private final MemberRepository memberRepository;
     private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 60;    // 액세스 토큰 만료 시간 : 1시간
     private static final long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7; // 리프레쉬 토큰 만료 시간 : 7일
     private static final String BEARER = "Bearer ";
-    private static final String accessHeader = "Authorization";
-    private static final String refreshHeader = "Authorization-refresh";
-    private final MemberRepository memberRepository;
     /**
      * AccessToken 생성 메소드
      */
