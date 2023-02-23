@@ -32,13 +32,13 @@ public class JwtService {
      */
     public String createAccessToken(String email) {
         Date now = new Date();
+
         return JWT.create() // JWT 토큰을 생성하는 빌더 반환
-                .withSubject("AccessToken") // JWT의 Subject 지정 -> AccessToken이므로 AccessToken
+                .withSubject(String.valueOf(memberRepository.findByEmail(email).get().getMemberId())) // JWT의 Subject -> 멤버 아이디
                 .withExpiresAt(new Date(now.getTime() + ACCESS_TOKEN_EXPIRE_TIME)) // 토큰 만료 시간 설정
                 .withClaim("email", email)
                 .sign(Algorithm.HMAC512(secretKey)); // HMAC512 알고리즘 사용, application-secret.yml에서 지정한 secret 키로 암호화
     }
-
     /**
      * RefreshToken 생성
      * RefreshToken은 Claim에 email도 넣지 않으므로 withClaim() X
