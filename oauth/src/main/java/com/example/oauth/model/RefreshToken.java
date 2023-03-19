@@ -11,7 +11,7 @@ import org.springframework.data.redis.core.RedisHash;
 @Setter
 @NoArgsConstructor
 public class RefreshToken {
-    @Id
+    @Id   //redis에서는 javax.persistence.Id가 아닌 annotation.Id로
     private String email;
 
     private String token;
